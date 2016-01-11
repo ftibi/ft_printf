@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   fct_count.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/11 15:47:12 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/11 18:27:22 by tfolly           ###   ########.fr       */
+/*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
+/*   Updated: 2016/01/11 18:33:36 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-#include <stdarg.h>
+#include "ft_printf.h"
 
-int	ft_putnbr_printf(void *nbr);
-
-int	testfct(int last, ...)
+int		ft_putnbr_printf(void *nbr)
 {
-	va_list	ap;
-	
-	va_start(ap, last);
-	//ft_putendl((char*)va_arg(ap, void*));	
-	ft_putnbr_printf(va_arg(ap, void*));
-	va_end(ap);
-
+	ft_putnbr((int)nbr);
 	return (0);
 }
 
-
-int	main(void)
+int		ft_putstr_printf(void *str)
 {
-	int a = 10;
-	int b = 20;
+	ft_putstr((char*)str);
+	return (ft_strlen((char*)str));
+}
 
-	testfct(a, b);	
-
-	return (0);
+int		ft_putchar_printf(void *c)
+{
+	ft_putchar((char)c);
+	return (1);
 }
