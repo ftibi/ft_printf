@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:34:01 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/11 18:52:56 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/11 19:45:36 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main()
 {
 
-	ft_printf("salut comment %s va bien?\n", "ca");
+	ft_printf("salut comment %s va? on est en %d et mon nom commence par %c\n", "ca", 2016, 'T');
 
 	return (0);
 
