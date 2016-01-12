@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:15:06 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/12 18:12:04 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/12 18:18:39 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			ft_printf(const char *format, ...)
 			format++;
 			opt_read(opt, (char**)&format);
 			list = find_list(begin_list, *format);
-			count += (int)list->fct((void*)va_arg(args, void*));
+			count += (int)list->fct((void*)va_arg(args, void*), opt);
 			format++;
 		}
 	}
