@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:15:06 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/12 18:18:39 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/12 18:46:12 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,18 @@ int			ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			opt_read(opt, (char**)&format);
-			list = find_list(begin_list, *format);
-			count += (int)list->fct((void*)va_arg(args, void*), opt);
+			if (*format == '%')
+			{
+				va_arg(args, void*);
+				ft_putchar('%');
+				count++;
+			}
+			else
+			{
+				opt_read(opt, (char**)&format);
+				list = find_list(begin_list, *format);
+				count += (int)list->fct((void*)va_arg(args, void*), opt);
+			}
 			format++;
 		}
 	}
