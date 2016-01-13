@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 16:27:16 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/13 16:50:08 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/13 17:11:36 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*opt_read(t_opt *opt, char *format)
 	opt_str = ft_strdup("+-0# ");
 	while (ft_strchr(opt_str, *format))
 	{
+	//	ft_putendl("entree 1er while");
 		if (*format == '#')
 			opt->hash = 1;
 		else if (*format == '0')
@@ -64,7 +65,9 @@ char	*opt_read(t_opt *opt, char *format)
 		else if (*format == ' ')
 			opt->space = 1;
 		format++;
+//	ft_putendl("fin 1er while");
 	}
+//	ft_putendl("sortie 1er while");
 	while (ft_isdigit(*format))
 	{
 		opt->min_width *= 10;
