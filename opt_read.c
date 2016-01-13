@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 16:27:16 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/12 18:58:15 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/13 16:50:08 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ t_opt	*opt_init(t_opt *opt)
 	return (opt);
 }
 
-static t_opt	*opt_read_size(t_opt *opt, char **fmt)
+static char	*opt_read_size(t_opt *opt, char *format)
 {
-	char	*format;
-
-	format = *fmt;
+//	ft_putendl("appel opt_read_size");
 	if (*format == 'h' && *(format + 1) == 'h')
 		opt->size = 1;
 	else if (*format == 'h')
@@ -42,17 +40,17 @@ static t_opt	*opt_read_size(t_opt *opt, char **fmt)
 		opt->size = 1;
 	else if (*format == 'z') // a voir
 		opt->size = 1;
-	return (opt);
+//	ft_putendl("sortie opt_read_size");
+	return (format);
 	
 }
 
-t_opt	*opt_read(t_opt *opt, char **fmt)
+char	*opt_read(t_opt *opt, char *format)
 {
-	char	*format;
 	char	*opt_str;
-
+	
+//	ft_putendl("appel opt_read");
 	opt_str = ft_strdup("+-0# ");
-	format = *fmt;
 	while (ft_strchr(opt_str, *format))
 	{
 		if (*format == '#')
@@ -83,6 +81,8 @@ t_opt	*opt_read(t_opt *opt, char **fmt)
 			format++;
 		}
 	}
-	opt = opt_read_size(opt, fmt);
-	return (opt);
+	opt_read_size(opt, format);
+	//ft_strdel(&opt_str);
+//	ft_putendl("sortie opt_read");
+	return (format);
 }

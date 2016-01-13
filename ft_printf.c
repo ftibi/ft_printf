@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:15:06 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/12 19:03:07 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/13 17:02:27 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ int			ft_printf(const char *format, ...)
 			}
 			else
 			{
-				opt_read(opt, (char**)&format);
-				ft_putendl(format);
+				opt_read(opt, (char*)format);
+			//	ft_putendl(format); //juste pour le debug
+				print_opt(opt);
 				list = find_list(begin_list, *format);
 				count += (int)list->fct((void*)va_arg(args, void*), opt);
 			}
@@ -57,5 +58,3 @@ int			ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-
-//il va falloir que je passe format en retour des fctions pour eviter les segfaults!
