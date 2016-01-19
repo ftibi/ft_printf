@@ -1,13 +1,42 @@
+NAME = libftprintf.a
+
 SRC_PATH = ./sources
 
 SRC_NAME = fct_count.c ft_printf.c print_opt.c fmt_init.c opt_read.c
 
-SRC = $(addprefix $(SRC_PATH)/,$SRC_NAME)
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ = $(SRC:.c=.o)
 
-LIB = libft.a
+LIB = ./libft/libft.a
+
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+CPPFLAGS = -I./includes
+
+all: $(LIB) $(NAME)
 
 $(LIB):
 	make -C ./libft
 
+$(NAME): $(OBJ) $(LIB)
+	cp $(LIB) $(NAME)
+	ar rc $(NAME) $(OBJ)  
+
+$(SRC_PATH)%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+clean:
+	rm -fv $(OBJ)
+
+fclean: clean
+	rm -fv $(NAME)
+
+re: fclean all
+
+.PHONY: all, clean, fclean, re
+
+norme:
+	norminette $(SRC)

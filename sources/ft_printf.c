@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:15:06 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/13 17:12:42 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/19 16:36:01 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			ft_printf(const char *format, ...)
 	t_opt	*opt;
 
 	count = 0;
+	list = 0;
 	list = fmt_init(list);
 	begin_list = list;
 	va_start(args, format);

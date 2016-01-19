@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 12:52:02 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/11 19:32:25 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/19 16:36:28 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static t_fmt	*fmt_new(t_fmt *list, char flag, void *fct)
 {
-	t_fmt	*tmp;
 	t_fmt	*new;
 
 	if (list)
