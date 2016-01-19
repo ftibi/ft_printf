@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 16:27:16 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/13 17:11:36 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/13 17:30:50 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*opt_read_size(t_opt *opt, char *format)
 	
 }
 
-char	*opt_read(t_opt *opt, char *format)
+char	*opt_read(t_opt *opt, char *format) //comment gerer les opt invalides
 {
 	char	*opt_str;
 	
