@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:15:06 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/19 16:36:01 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/19 19:06:58 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ int			ft_printf(const char *format, ...)
 				format = opt_read(opt, (char*)format);
 			//	ft_putendl(format); //juste pour le debug
 			//	print_opt(opt);
-				list = find_list(begin_list, *format);
-				count += (int)list->fct((void*)va_arg(args, void*), opt);
+				if (!(list = find_list(begin_list, *format)))
+					return (-1);
+				count += (int)list->fct(va_arg(args, void*), opt);
 			}
 			format++;
 		}
