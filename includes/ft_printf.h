@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:14:54 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/13 17:06:48 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/22 18:23:20 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_fmt	*find_list(t_fmt *begin, char flag);
 int		ft_putstr_printf(void *str, t_opt *opt);
 int		ft_putnbr_printf(void *nb, t_opt *opt);
 int		ft_putchar_printf(void *c, t_opt *opt);
+int		ft_puthexa_printf(void *nb, t_opt *opt);
 
 //pour le debug a retirer
 void	print_opt(t_opt *opt);

@@ -6,45 +6,39 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 17:59:34 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/22 13:20:57 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/22 14:46:31 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//utiliser un unsigned int pour stocker la valeur
-//faire une fct qui malloc et renvoie la chaine de char a zero et modif pow 
-//faire une fct qui ajoute le '-' au debut si necessaire
-//rajouter les lettres abcdef pour les bases sup a 10
-//faire une fct qui renvoie le bon char alphanum a mettre dans la chaine
-//penser a mettre unsigned dans ft_pow
-//repenser au pbl; de depassement dint dans pow
-
-static char *ft_init_itoa(unsigned int nb, int base, int *pow, int signe)
+static char		*ft_init_itoa(unsigned int nb, int base, int *pow, int signe)
 {
 	char	*ret;
 
 	*pow = 1;
-	while (ft_pow(base, *pow) < nb)
-	    (*pow)++;
+	while (nb >= base)
+	{
+		nb /= base;
+		(*pow)++;
+	}
 	if (!(ret = ft_strnew(*pow + (signe == -1))))
-	    return (NULL);
-	*pow = ft_pow(base, *pow);
-	*pow = (*pow == nb) ? *pow : *pow / base;
+		return (NULL);
+	*pow = ft_pow(base, *pow - 1);
 	return (ret);
 }
 
-static char *ft_signe_itoa(int signe, char *ret)
+static char		*ft_signe_itoa(int signe, char *ret)
 {
 	if (signe == -1)
 	{
-	    *ret = '-';
-	    ret++;
+		*ret = '-';
+		ret++;
 	}
 	return (ret);
 }
 
-static char ft_char_itoa(int pow, int nb)
+static char		ft_char_itoa(int pow, int nb, int base)
 {
 	char	ret;
 
@@ -56,7 +50,7 @@ static char ft_char_itoa(int pow, int nb)
 	return (ret);
 }
 
-char    *ft_itoa_base(int nbr, int base)
+char			*ft_itoa_base(int nbr, int base)
 {
 	char			*ret;
 	char			*save;
@@ -72,11 +66,10 @@ char    *ft_itoa_base(int nbr, int base)
 	ret = ft_signe_itoa(signe, ret);
 	while (pow > 0)
 	{
-		*ret = ft_char_itoa(pow, nb);
+		*ret = ft_char_itoa(pow, nb, base);
 		nb = nb % pow;
 		pow = pow / base;
-		if (*ret != '0' || (signe == 1 && ret != save) || (signe == -1 && ret != save + 1))
-			ret++;
+		ret++;
 	}
 	return (save);
 }

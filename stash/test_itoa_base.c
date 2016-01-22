@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 18:13:49 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/22 12:33:13 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/22 14:27:17 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,19 @@ int main()
 
     str = ft_itoa_base(nb, base);
     ft_putendl(str);
+    
+    nb = 255; base = 2;
+    str = ft_itoa_base(nb, base);
+    ft_putendl(str);
+    
+    nb = -100; base = 10;
+    str = ft_itoa_base(nb, base);
+    ft_putendl(str);
+    
+    nb = 100; base = 10;
+    str = ft_itoa_base(nb, base);
+    ft_putendl(str);
+    
+    
     return (0);
 }

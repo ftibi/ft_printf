@@ -6,59 +6,54 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/21 14:30:03 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/22 19:08:44 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <limits.h>
 
+int		ft_puthexa_printf(void *n, t_opt *opt)
+{
+	char	*tmp;
+	int		ret;
+
+	opt = NULL;
+	tmp = ft_uitoa_base((unsigned int)n, 16);
+	ft_putstr(tmp);
+	ret = ft_strlen(tmp);
+	ft_memdel((void**)&tmp);
+	return (ret);
+}
+
 int		ft_putnbr_printf(void *n, t_opt *opt)
 {
 	int			ret;
 	int			nbr;
-	long int	op;
-	long int	op2;
+	char		*tmp;
 
-	nbr = (long int)n;
 	opt = NULL;
-	ret = 0;
-
-	if (nbr == INT_MIN)
-	{
-		ft_putstr("-2147483648");
-		return (11);
-	}
-	if (nbr < 0)
-	{
-		nbr = -nbr;
-		ft_putchar('-');
-		ret++;
-	}
-	if (nbr > 10)
-	{
-		op = nbr / 10;
-		op2 = nbr % 10;
-		ret += (ft_putnbr_printf((void*)op, opt));
-		ret += (ft_putnbr_printf((void*)op2, opt));
-	}
-	else
-	{
-		ft_putchar('0' + nbr);
-		ret++;
-	}
+	nbr = (long int)n;
+	tmp = ft_itoa_base((int)n, 10);
+	ret = ft_strlen(tmp);
+	ft_putstr(tmp);
+	ft_memdel((void**)&tmp);
 	return (ret);
 }
 
 int		ft_putstr_printf(void *str, t_opt *opt)
 {
+	char *tmp;
+
 	if (!str)
 	{
 		ft_putstr("(null)");
 		return (6);
 	}
 	opt = NULL;
-	ft_putstr((char*)str);
+	tmp = ft_strdup((char*)str);
+	ft_putstr(tmp);
+	ft_memdel((void**)&tmp);
 	return (ft_strlen((char*)str));
 }
 

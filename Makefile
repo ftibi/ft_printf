@@ -40,3 +40,7 @@ re: fclean all
 
 norme:
 	norminette $(SRC)
+
+test: all
+	$(CC) -o test $(NAME) main.c $(CPPFLAGS) 
+	
