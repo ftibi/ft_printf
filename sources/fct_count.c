@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/22 19:08:44 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/22 20:29:57 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@ int		ft_puthexa_printf(void *n, t_opt *opt)
 	char	*tmp;
 	int		ret;
 
+	ret = 0;
+	if (opt->hash == 1)
+	{
+		ft_putstr("0x");
+		ret += 2;
+	}
 	opt = NULL;
-	tmp = ft_uitoa_base((unsigned int)n, 16);
+	tmp = ft_uitoa_base((unsigned long long int)n, 16);
 	ft_putstr(tmp);
-	ret = ft_strlen(tmp);
+	ret += ft_strlen(tmp);
 	ft_memdel((void**)&tmp);
 	return (ret);
 }
