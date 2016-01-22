@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 17:59:34 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/21 18:54:51 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/22 13:20:57 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,66 @@
 //faire une fct qui ajoute le '-' au debut si necessaire
 //rajouter les lettres abcdef pour les bases sup a 10
 //faire une fct qui renvoie le bon char alphanum a mettre dans la chaine
+//penser a mettre unsigned dans ft_pow
+//repenser au pbl; de depassement dint dans pow
 
-
-static char *ft_init_itoa(int nb, int base, int *pow)
+static char *ft_init_itoa(unsigned int nb, int base, int *pow, int signe)
 {
-    char *ret;
+	char	*ret;
 
-    *pow = 1;
-    while (ft_pow(base, *pow) < nb)
-        (*pow)++;
-    *pow = ft_pow(base, *pow);
-    *pow = (*pow == nb) ? *pow : *pow / base;
-    if (!(ret = ft_memalloc(*pow + 2)))
-        return (NULL);
-    return (ret);
+	*pow = 1;
+	while (ft_pow(base, *pow) < nb)
+	    (*pow)++;
+	if (!(ret = ft_strnew(*pow + (signe == -1))))
+	    return (NULL);
+	*pow = ft_pow(base, *pow);
+	*pow = (*pow == nb) ? *pow : *pow / base;
+	return (ret);
 }
 
 static char *ft_signe_itoa(int signe, char *ret)
 {
-    if (signe == -1)
-    {
-        *ret = '-';
-        ret++;
-    }
-    return (ret);
+	if (signe == -1)
+	{
+	    *ret = '-';
+	    ret++;
+	}
+	return (ret);
 }
 
-static char ft_char_itoa(int base, int pow, int nb)
+static char ft_char_itoa(int pow, int nb)
 {
-    char    ret;
+	char	ret;
 
-    ret = nb / pow + '0';
-    return (ret);
+	ret = nb / pow;
+	if (ret >= 10)
+		ret += 'a' - 10;
+	else
+		ret += '0';
+	return (ret);
 }
 
 char    *ft_itoa_base(int nbr, int base)
 {
-    char    *ret;
-    char    *save;
-    int     signe;
-    int     pow;
-    unsigned int nb;
+	char			*ret;
+	char			*save;
+	int				signe;
+	int				pow;
+	unsigned int	nb;
 
-    signe = (nbr >= 0) ? 1 : -1;
-    nb = signe * nbr;
-    if (!(ret = ft_init_itoa(nb, base, &pow)))
-        return (NULL);
-    save = ret;
-    ret = ft_signe_itoa(signe, ret);
-    while (pow > 0)
-    {
-        *ret = nb / pow + '0';
-        nb = nb % pow;
-        pow = pow / base;
-        ret++;
-    }
-    return (save);
+	signe = (nbr >= 0) ? 1 : -1;
+	nb = signe * nbr;
+	if (!(ret = ft_init_itoa(nb, base, &pow, signe)))
+		return (NULL);
+	save = ret;
+	ret = ft_signe_itoa(signe, ret);
+	while (pow > 0)
+	{
+		*ret = ft_char_itoa(pow, nb);
+		nb = nb % pow;
+		pow = pow / base;
+		if (*ret != '0' || (signe == 1 && ret != save) || (signe == -1 && ret != save + 1))
+			ret++;
+	}
+	return (save);
 }
