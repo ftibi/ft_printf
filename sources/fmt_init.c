@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 12:52:02 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/22 20:22:11 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/01/22 20:44:36 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ t_fmt	*fmt_init(t_fmt *fmt_list)
 	fmt_new(fmt_list, 'i', ft_putnbr_printf);
 	fmt_new(fmt_list, 'c', ft_putchar_printf);
 	fmt_new(fmt_list, 'x', ft_puthexa_printf);
+	//fmt_new(fmt_list, 'o', ft_putoct_printf);
 	return (fmt_list);
 }
