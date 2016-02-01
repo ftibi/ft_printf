@@ -14,7 +14,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-CPPFLAGS = -I./includes
+CPPFLAGS = -I./includes -I./libft/includes
 
 all: $(LIB) $(NAME)
 

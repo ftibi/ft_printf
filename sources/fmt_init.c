@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 12:52:02 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/22 20:44:36 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/01 16:17:13 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,17 @@ t_fmt	*fmt_init(t_fmt *fmt_list)
 {
 	fmt_list = NULL;
 	fmt_list = fmt_new(fmt_list, 's', ft_putstr_printf);
+	fmt_new(fmt_list, 'S', ft_putstr_printf);
 	fmt_new(fmt_list, 'd', ft_putnbr_printf);
+	fmt_new(fmt_list, 'D', ft_lputnbr_printf);
 	fmt_new(fmt_list, 'i', ft_putnbr_printf);
 	fmt_new(fmt_list, 'c', ft_putchar_printf);
+	fmt_new(fmt_list, 'C', ft_putchar_printf);
 	fmt_new(fmt_list, 'x', ft_puthexa_printf);
-	//fmt_new(fmt_list, 'o', ft_putoct_printf);
+	fmt_new(fmt_list, 'X', ft_puthexamaj_printf);
+	fmt_new(fmt_list, 'o', ft_putoct_printf);
+	fmt_new(fmt_list, 'O', ft_putoct_printf);
+	fmt_new(fmt_list, 'u', ft_uputnbr_printf);
+	fmt_new(fmt_list, 'U', ft_uputnbr_printf);
 	return (fmt_list);
 }
