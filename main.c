@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:34:01 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/22 20:36:26 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/01 13:21:49 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,21 @@ int	main()
 //	printf("%x\n", UINT_MAX);
 
 	//test  p
-	int i;
-	int *ptr;
+	unsigned long long i;
+	unsigned long long *ptr;
 	
-//	ptr = &i;
-	printf("test : %lu\n", ULONG_MAX);
-	ft_printf("%p\n", &i);
-	printf("%p\n", &i);
+	ptr = &i;
+//	printf("test : %lu\n", INT_MIN);
+	ft_printf("%x\n", 15);
+	ft_printf("%p\n", ptr);
+	printf("%p\n", ptr);
 	printf("size of the pointeur : %ld\n", sizeof(ptr));
+	
+	//tests sur itoa base
+	printf("tests sur uitoa base :\n");
+	i = ULONG_MAX;
+	printf("%llx\n", i);
+	ft_putendl(ft_uitoa_base(i, 16));
 	return (0);
 
 }

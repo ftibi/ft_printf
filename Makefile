@@ -29,9 +29,11 @@ $(SRC_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
+	make clean -C ./libft
 	rm -fv $(OBJ)
 
 fclean: clean
+	make fclean -C ./libft
 	rm -fv $(NAME)
 
 re: fclean all

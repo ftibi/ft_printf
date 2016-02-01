@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/01/22 20:40:20 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/01 12:41:44 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_puthexa_printf(void *n, t_opt *opt)
 		ret += 2;
 	}
 	opt = NULL;
-	tmp = ft_uitoa_base((unsigned long)n, 16);
+	tmp = ft_uitoa_base((unsigned long long)n, 16);
 	ft_putstr(tmp);
 	ret += ft_strlen(tmp);
 	ft_memdel((void**)&tmp);
