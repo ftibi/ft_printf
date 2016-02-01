@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/01 16:16:37 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/01 17:23:16 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,3 +132,40 @@ int		ft_putchar_printf(void *c, t_opt *opt)
 	ft_putchar((char)c);
 	return (1);
 }
+
+int		ft_lputchar(void *c, t_opt *opt)
+{
+	wchar_t		ltr;
+
+	opt = NULL;
+	ltr = (wchar_t)c;
+	return (1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
