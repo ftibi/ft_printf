@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/01 17:23:16 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/02 17:32:11 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,69 @@ int		ft_putchar_printf(void *c, t_opt *opt)
 	return (1);
 }
 
-int		ft_lputchar(void *c, t_opt *opt)
+//static pour lputchar
+static wchar_t	two_oct(unsigned long c)
 {
-	wchar_t		ltr;
+	int		i;
+	int		oct1;
+	int		oct2;
 
+	oct1 = ft_pow(2, 7) + ft_pow(2, 6);
+	i = 10;
+	while (i >= 6)
+	{
+		if (c / ft_pow(2, i))
+		{
+			oct1 += ft_pow(2, i - 6);
+			c -= ft_pow(2, i);
+		}
+		i--;
+	}
+	oct2 = ft_pow(2, 7);
+	while (i >= 0)
+	{
+		if (c / ft_pow(2, i))
+		{
+			oct2 += ft_pow(2, i);
+			c = c - ft_pow(2, i);
+		}
+		i--;
+	}
+	write(1, &oct1, 1);
+	write(1, &oct2, 1);
+	return (1);
+}
+
+static wchar_t	three_oct(unsigned long c)
+{
+	wchar_t ltr;
+
+	ltr = c;
+	return (ltr);
+}
+
+static wchar_t	four_oct(unsigned long c)
+{
+	wchar_t ltr;
+	ltr = c;
+	return (ltr);
+}
+
+int		ft_lputchar_printf(void *c, t_opt *opt)
+{
+	unsigned long	tmp;
+	
+	ft_putendl("appel de lputchar");
 	opt = NULL;
-	ltr = (wchar_t)c;
+	tmp = (unsigned long)c;
+	if (tmp < 128) // ltr se code sur 1 a 7 bits 1 oct
+		return (ft_putchar_printf(c, opt)); 
+	else if (tmp < 2048)// ltr se code sur 8 a 11 bits 2 oct
+		return (two_oct((unsigned long)c));
+	else if (tmp < ft_ulpow(2, 15) * 2 - 1)// 12 a 16 bits : 3 oct
+		return (three_oct((unsigned long)c));
+	else if (tmp < ft_ulpow(2, 20) * 2 - 1)// 17 a 21 bits : 4 oct
+		return (four_oct((unsigned long)c));
 	return (1);
 }
 
