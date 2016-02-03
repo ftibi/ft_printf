@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:34:01 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/02 17:30:57 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/03 13:50:33 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	main()
 	printf("calcul : %d\n", ft_pow(2,15) + ft_pow(2,14) + ft_pow(2, 7));
 
 
-	printf("%C\n", 233);	
-	ft_printf("%C\n", 233);	
+	printf("%C\n", 63743);	
+	ft_printf("%C\n", 63743);	
 
 	printf("%C\n", 945);	
 	ft_printf("%C\n", 945);	

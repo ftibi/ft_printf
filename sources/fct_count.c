@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/02 17:32:11 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/03 14:09:36 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int		ft_putchar_printf(void *c, t_opt *opt)
 }
 
 //static pour lputchar
-static wchar_t	two_oct(unsigned long c)
+static int	two_oct(unsigned long c)
 {
 	int		i;
 	int		oct1;
@@ -165,20 +165,94 @@ static wchar_t	two_oct(unsigned long c)
 	write(1, &oct2, 1);
 	return (1);
 }
+//static pour donner la valeur d un octet
 
-static wchar_t	three_oct(unsigned long c)
+static int	val_oct(char *str)
 {
-	wchar_t ltr;
+	int i;
+	int	res;
 
-	ltr = c;
-	return (ltr);
+	i = 0;
+	res = 0;
+	while (i <= 7)
+	{
+		res += ft_pow(2, 7 - i) * (*str - '0');
+		i++;
+		str++;
+	}
+	return (res);
 }
 
-static wchar_t	four_oct(unsigned long c)
+static int	three_oct(unsigned long c)
+{
+	int		oct1;
+	int		oct2;
+	int		oct3;
+	char 	*mask;
+	char 	*mask_save;
+	char	*bin;
+	char	*save;
+
+	ft_putendl("appel 3oct");
+	mask = ft_strdup("1110xxxx10xxxxxx10xxxxxx");
+	mask_save = mask;
+	bin = ft_itoa_base(c, 2);	
+	ft_putendl(bin);
+	save = bin;
+	while (*mask)
+		mask++;
+	mask--;
+	while (*bin)
+		bin++;
+	bin--;
+	while (bin != save - 1)
+	{
+		if (*mask == 'x')
+		{
+			*mask = *bin;
+			bin--;
+			mask--;
+		}
+		else
+			mask--;
+	}
+	//il faut mettre des 0 a la place des x restants
+	mask = mask_save;
+	while (*mask)
+	{
+		if (*mask == 'x')
+			*mask = '0';
+		mask++;
+	}
+	mask = mask_save;
+	ft_putendl(mask);
+	//reste a afficher les 3 octets
+	oct1 = val_oct(mask);
+	oct2 = val_oct(mask + 8);
+	oct3 = val_oct(mask + 16);
+	
+	ft_putnbr(oct1);	
+	ft_putendl("");
+	ft_putnbr(oct2);	
+	ft_putendl("");
+	ft_putnbr(oct3);	
+	ft_putendl("");
+	
+	write(1, &oct1, 1);
+	write(1, &oct2, 1);
+	write(1, &oct3, 1);
+	ft_putendl("");
+	ft_putendl("sortie 3oct");
+//	ft_strdel(&mask);  strdel me fait segfault
+	ft_putendl("sortie 3oct");
+	return (1);
+}
+
+static int	four_oct(unsigned long c)
 {
 	wchar_t ltr;
 	ltr = c;
-	return (ltr);
+	return (1);
 }
 
 int		ft_lputchar_printf(void *c, t_opt *opt)
