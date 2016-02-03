@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:55:31 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/01 16:17:57 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/03 17:31:22 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,6 @@ char				*ft_uitoa_base(unsigned long long nbr, unsigned int base);
 char				*ft_uitoa_basemaj(unsigned long long nbr, unsigned int base);
 char				*ft_litoa_base(long long nbr, unsigned int base);
 unsigned long long	ft_ulpow(unsigned long long nb, int base);
+unsigned long		ft_atoi_base(char *str, int base);
+char			*ft_itoa_basemaj(int nb, unsigned int base);
 #endif

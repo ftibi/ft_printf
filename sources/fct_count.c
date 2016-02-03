@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/03 16:11:45 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/03 17:35:57 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int		ft_puthexa_printf(void *n, t_opt *opt)
 		ft_putstr("0x");
 		ret += 2;
 	}
-	opt = NULL;
-	tmp = ft_uitoa_base((unsigned long long)n, 16);
+	tmp = ft_itoa_base((int)n, 16);
 	ft_putstr(tmp);
 	ret += ft_strlen(tmp);
 	ft_memdel((void**)&tmp);
@@ -57,8 +56,7 @@ int		ft_puthexamaj_printf(void *n, t_opt *opt)
 		ft_putstr("0x");
 		ret += 2;
 	}
-	opt = NULL;
-	tmp = ft_uitoa_basemaj((unsigned long long)n, 16);
+	tmp = ft_itoa_basemaj((int)n, 16);
 	ft_putstr(tmp);
 	ret += ft_strlen(tmp);
 	ft_memdel((void**)&tmp);
@@ -284,20 +282,15 @@ static int	four_oct(wchar_t c)
 
 int		ft_lputchar_printf(wchar_t c, t_opt *opt)
 {
-	wchar_t	tmp;
-	
-//	ft_putendl("appel de lputchar");
-	opt = NULL;
-	tmp = (wchar_t)c;
-	if (tmp < 128) // ltr se code sur 1 a 7 bits 1 oct
+	//ft_putendl("appel de lputchar");
+	if (c < 128) // ltr se code sur 1 a 7 bits 1 oct
 		return (ft_putchar_printf(c, opt)); 
-	else if (tmp < 2048)// ltr se code sur 8 a 11 bits 2 oct
+	else if (c < 2048)// ltr se code sur 8 a 11 bits 2 oct
 		return (two_oct((wchar_t)c));
-	else if (tmp < ft_pow(2, 15) * 2 - 1)// 12 a 16 bits : 3 oct
+	else if (c < ft_pow(2, 15) * 2 - 1)// 12 a 16 bits : 3 oct
 		return (three_oct((wchar_t)c));
-	else if (tmp < ft_pow(2, 20) * 2 - 1)// 17 a 21 bits : 4 oct
+	else// 17 a 21 bits : 4 oct
 		return (four_oct((wchar_t)c));
-	return (0);
 }
 
 int		ft_lputstr_printf(void *str, t_opt *opt)
@@ -307,7 +300,10 @@ int		ft_lputstr_printf(void *str, t_opt *opt)
 	int				ret;
 	
 	if (!str)
-		return (1);
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
 	count = 0;
 	opt = NULL;
 	tmp = (wchar_t*)str;
@@ -315,7 +311,7 @@ int		ft_lputstr_printf(void *str, t_opt *opt)
 	{
 		ret = ft_lputchar_printf(*tmp, opt);
 		count += ret;
-		tmp += 1; 
+		tmp++; 
 	}
 	return (count);
 }
