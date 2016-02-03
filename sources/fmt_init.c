@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 12:52:02 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/01 17:07:03 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/03 15:20:01 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_fmt	*fmt_init(t_fmt *fmt_list)
 {
 	fmt_list = NULL;
 	fmt_list = fmt_new(fmt_list, 's', ft_putstr_printf);
-	fmt_new(fmt_list, 'S', ft_putstr_printf);
+	fmt_new(fmt_list, 'S', ft_lputstr_printf);
 	fmt_new(fmt_list, 'd', ft_putnbr_printf);
 	fmt_new(fmt_list, 'D', ft_lputnbr_printf);
 	fmt_new(fmt_list, 'i', ft_putnbr_printf);

@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:21:43 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/03 14:09:36 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/03 16:11:45 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int		ft_putstr_printf(void *str, t_opt *opt)
 	return (ft_strlen((char*)str));
 }
 
-int		ft_putchar_printf(void *c, t_opt *opt)
+int		ft_putchar_printf(char c, t_opt *opt)
 {
 	opt = NULL;
 	ft_putchar((char)c);
@@ -134,7 +134,7 @@ int		ft_putchar_printf(void *c, t_opt *opt)
 }
 
 //static pour lputchar
-static int	two_oct(unsigned long c)
+static int	two_oct(unsigned int c)
 {
 	int		i;
 	int		oct1;
@@ -163,10 +163,10 @@ static int	two_oct(unsigned long c)
 	}
 	write(1, &oct1, 1);
 	write(1, &oct2, 1);
-	return (1);
+	return (2);
 }
-//static pour donner la valeur d un octet
 
+//static pour donner la valeur d un octet
 static int	val_oct(char *str)
 {
 	int i;
@@ -183,7 +183,7 @@ static int	val_oct(char *str)
 	return (res);
 }
 
-static int	three_oct(unsigned long c)
+static int	three_oct(wchar_t c)
 {
 	int		oct1;
 	int		oct2;
@@ -193,11 +193,9 @@ static int	three_oct(unsigned long c)
 	char	*bin;
 	char	*save;
 
-	ft_putendl("appel 3oct");
 	mask = ft_strdup("1110xxxx10xxxxxx10xxxxxx");
 	mask_save = mask;
 	bin = ft_itoa_base(c, 2);	
-	ft_putendl(bin);
 	save = bin;
 	while (*mask)
 		mask++;
@@ -216,7 +214,6 @@ static int	three_oct(unsigned long c)
 		else
 			mask--;
 	}
-	//il faut mettre des 0 a la place des x restants
 	mask = mask_save;
 	while (*mask)
 	{
@@ -225,56 +222,103 @@ static int	three_oct(unsigned long c)
 		mask++;
 	}
 	mask = mask_save;
-	ft_putendl(mask);
-	//reste a afficher les 3 octets
 	oct1 = val_oct(mask);
 	oct2 = val_oct(mask + 8);
 	oct3 = val_oct(mask + 16);
-	
-	ft_putnbr(oct1);	
-	ft_putendl("");
-	ft_putnbr(oct2);	
-	ft_putendl("");
-	ft_putnbr(oct3);	
-	ft_putendl("");
-	
 	write(1, &oct1, 1);
 	write(1, &oct2, 1);
 	write(1, &oct3, 1);
-	ft_putendl("");
-	ft_putendl("sortie 3oct");
-//	ft_strdel(&mask);  strdel me fait segfault
-	ft_putendl("sortie 3oct");
-	return (1);
+	return (3);
 }
 
-static int	four_oct(unsigned long c)
+static int	four_oct(wchar_t c)
 {
-	wchar_t ltr;
-	ltr = c;
-	return (1);
+	int		oct1;
+	int		oct2;
+	int		oct3;
+	int		oct4;
+	char 	*mask;
+	char 	*mask_save;
+	char	*bin;
+	char	*save;
+
+	mask = ft_strdup("11110xxx10xxxxxx10xxxxxx10xxxxxx");
+	mask_save = mask;
+	bin = ft_itoa_base(c, 2);	
+	save = bin;
+	while (*mask)
+		mask++;
+	mask--;
+	while (*bin)
+		bin++;
+	bin--;
+	while (bin != save - 1)
+	{
+		if (*mask == 'x')
+		{
+			*mask = *bin;
+			bin--;
+			mask--;
+		}
+		else
+			mask--;
+	}
+	mask = mask_save;
+	while (*mask)
+	{
+		if (*mask == 'x')
+			*mask = '0';
+		mask++;
+	}
+	mask = mask_save;
+	oct1 = val_oct(mask);
+	oct2 = val_oct(mask + 8);
+	oct3 = val_oct(mask + 16);
+	oct4 = val_oct(mask + 24);
+	write(1, &oct1, 1);
+	write(1, &oct2, 1);
+	write(1, &oct3, 1);
+	write(1, &oct4, 1);
+	return (4);
 }
 
-int		ft_lputchar_printf(void *c, t_opt *opt)
+int		ft_lputchar_printf(wchar_t c, t_opt *opt)
 {
-	unsigned long	tmp;
+	wchar_t	tmp;
 	
-	ft_putendl("appel de lputchar");
+//	ft_putendl("appel de lputchar");
 	opt = NULL;
-	tmp = (unsigned long)c;
+	tmp = (wchar_t)c;
 	if (tmp < 128) // ltr se code sur 1 a 7 bits 1 oct
 		return (ft_putchar_printf(c, opt)); 
 	else if (tmp < 2048)// ltr se code sur 8 a 11 bits 2 oct
-		return (two_oct((unsigned long)c));
-	else if (tmp < ft_ulpow(2, 15) * 2 - 1)// 12 a 16 bits : 3 oct
-		return (three_oct((unsigned long)c));
-	else if (tmp < ft_ulpow(2, 20) * 2 - 1)// 17 a 21 bits : 4 oct
-		return (four_oct((unsigned long)c));
-	return (1);
+		return (two_oct((wchar_t)c));
+	else if (tmp < ft_pow(2, 15) * 2 - 1)// 12 a 16 bits : 3 oct
+		return (three_oct((wchar_t)c));
+	else if (tmp < ft_pow(2, 20) * 2 - 1)// 17 a 21 bits : 4 oct
+		return (four_oct((wchar_t)c));
+	return (0);
 }
 
-
-
+int		ft_lputstr_printf(void *str, t_opt *opt)
+{
+	wchar_t	*tmp;
+	int				count;
+	int				ret;
+	
+	if (!str)
+		return (1);
+	count = 0;
+	opt = NULL;
+	tmp = (wchar_t*)str;
+	while (*tmp)
+	{
+		ret = ft_lputchar_printf(*tmp, opt);
+		count += ret;
+		tmp += 1; 
+	}
+	return (count);
+}
 
 
 

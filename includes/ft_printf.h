@@ -6,7 +6,7 @@
 /*   By: tfolly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:14:54 by tfolly            #+#    #+#             */
-/*   Updated: 2016/02/01 17:06:44 by tfolly           ###   ########.fr       */
+/*   Updated: 2016/02/03 16:03:49 by tfolly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ t_fmt	*fmt_init(t_fmt *list);
 t_fmt	*find_list(t_fmt *begin, char flag);
 
 int		ft_putstr_printf(void *str, t_opt *opt);
+int		ft_lputstr_printf(void *str, t_opt *opt);
 int		ft_putnbr_printf(void *nb, t_opt *opt);
 int		ft_lputnbr_printf(void *nb, t_opt *opt);
-int		ft_putchar_printf(void *c, t_opt *opt);
-int		ft_lputchar_printf(void *c, t_opt *opt);
+int		ft_putchar_printf(char c, t_opt *opt);
+int		ft_lputchar_printf(wchar_t c, t_opt *opt);
 int		ft_puthexa_printf(void *nb, t_opt *opt);
 int		ft_puthexamaj_printf(void *nb, t_opt *opt);
 int		ft_putoct_printf(void *nb, t_opt *opt);
